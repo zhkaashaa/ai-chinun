@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আমার এআই চেনার ফলাফল</title>
+    
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const score = urlParams.get('score') || '0';
+        const total = urlParams.get('total') || '20';
+        const percentage = Math.round((parseInt(score) / parseInt(total)) * 100);
+        
+        let title = "আমি এআই চিনতে বেশ পারদর্শী!";
+        if (percentage >= 80) title = "অসাধারন! আপনি একজন এআই বিশেষজ্ঞ!";
+        else if (percentage >= 50) title = "ভালো চেষ্টা! আপনার জ্ঞান বেশ চমৎকার।";
+        else title = "আরেকটু চেষ্টা করুন, এআই চেনা কঠিন!";
+        
+        document.write(`
+            <meta property="og:type" content="website">
+            <meta property="og:title" content="এআই চিনুন কুইজ ফলাফল: ${score}/${total}">
+            <meta property="og:description" content="${title} আপনিও অংশ নিন এবং আপনার দক্ষতা যাচাই করুন!">
+            <meta property="og:image" content="https://dummyimage.com/1200x630/4f46e5/ffffff.png&text=AI+Quiz+Result:+${score}/${total}+(${percentage}%)">
+            <meta property="og:image:width" content="1200">
+            <meta property="og:image:height" content="630">
+        `);
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen flex items-center justify-center p-4">
+    <div class="max-w-md w-full bg-slate-800 rounded-2xl p-8 text-center border border-slate-700 shadow-2xl">
+        <h1 class="text-3xl font-bold text-indigo-400 mb-2">এআই চিনুন কুইজ</h1>
+        <p class="text-gray-400 mb-6">ফলাফল কার্ড</p>
+        <div class="bg-indigo-950/50 rounded-xl p-6 mb-6 border border-indigo-500/30">
+            <div class="text-5xl font-extrabold text-indigo-300 mb-2" id="score-text"></div>
+            <p class="text-lg text-slate-300" id="title-text"></p>
+        </div>
+        <a href="/" class="inline-block bg-indigo-600 hover:bg-indigo-500 text-white font-semibold px-6 py-3 rounded-lg shadow transition">
+            তুমিও কুইজে অংশ নাও
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('score-text').innerText = `${score} / ${total}`;
+        document.getElementById('title-text').innerText = title;
+    </script>
+</body>
+</html>
