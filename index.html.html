@@ -7,19 +7,17 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between font-sans">
+<body class="bg-gray-100 text-gray-800 min-h-screen flex flex-col justify-between font-sans">
 
     <!-- Header -->
-    <header class="border-b border-slate-800 bg-slate-900/50 backdrop-blur sticky top-0 z-50">
+    <header class="bg-white shadow-sm border-b sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <span class="text-2xl">🤖</span>
-                <h1 class="text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                    এআই চিনুন
-                </h1>
+                <h1 class="text-xl font-bold text-indigo-600">এআই চিনুন</h1>
             </div>
-            <div id="progress-container" class="hidden text-sm font-semibold text-slate-400">
-                প্রশ্ন: <span id="current-q" class="text-indigo-400">1</span>/20
+            <div id="progress-container" class="hidden text-sm font-semibold text-gray-500">
+                প্রশ্ন: <span id="current-q" class="text-indigo-600">1</span>/20
             </div>
         </div>
     </header>
@@ -28,13 +26,13 @@
     <main class="max-w-2xl mx-auto px-4 py-8 flex-1 flex flex-col justify-center w-full">
         
         <!-- Welcome Screen -->
-        <div id="welcome-screen" class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 text-center shadow-2xl">
+        <div id="welcome-screen" class="bg-white rounded-2xl p-6 sm:p-8 text-center shadow-lg border border-gray-100">
             <div class="text-5xl mb-4">🔍</div>
-            <h2 class="text-2xl sm:text-3xl font-bold mb-4">আপনি কি মানুষ ও AI-এর তৈরি কন্টেন্ট আলাদা করতে পারেন?</h2>
-            <p class="text-slate-400 mb-6 leading-relaxed">
+            <h2 class="text-2xl sm:text-3xl font-bold mb-4 text-gray-800">আপনি কি মানুষ ও AI-এর তৈরি কন্টেন্ট আলাদা করতে পারেন?</h2>
+            <p class="text-gray-600 mb-6 leading-relaxed">
                 ২০টি বিশেষ প্রশ্নের মাধ্যমে আপনার দৃষ্টি ও বিশ্লেষণ ক্ষমতা যাচাই করুন। দেখুন আপনি আসল মানুষের কাজ আর আর্টিফিশিয়াল ইন্টেলিজেন্সের তৈরি কাজ চিনতে পারেন কিনা!
             </p>
-            <button id="start-btn" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3.5 px-8 rounded-xl shadow-lg shadow-indigo-500/20 transition duration-200">
+            <button id="start-btn" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-8 rounded-xl shadow-md transition duration-200">
                 কুইজ শুরু করুন
             </button>
         </div>
@@ -42,28 +40,28 @@
         <!-- Quiz Screen -->
         <div id="quiz-screen" class="hidden space-y-6">
             <!-- Progress Bar -->
-            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                <div id="progress-bar" class="bg-indigo-500 h-full w-0 transition-all duration-300"></div>
+            <div class="w-full bg-gray-200 h-2 rounded-full overflow-hidden">
+                <div id="progress-bar" class="bg-indigo-600 h-full w-0 transition-all duration-300"></div>
             </div>
 
             <!-- Question Card -->
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
-                <h3 id="question-text" class="text-lg sm:text-xl font-semibold leading-snug text-slate-100">
+            <div class="bg-white rounded-2xl p-6 shadow-md border border-gray-100 space-y-6">
+                <h3 id="question-text" class="text-lg sm:text-xl font-semibold leading-snug text-gray-800">
                     প্রশ্ন এখানে আসবে...
                 </h3>
 
                 <!-- Sample Display Area -->
-                <div id="media-container" class="bg-slate-950 border border-slate-800 rounded-xl p-4 min-h-[160px] flex items-center justify-center">
-                    <p id="sample-text" class="text-slate-300 italic text-center text-base sm:text-lg leading-relaxed whitespace-pre-line"></p>
+                <div id="media-container" class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 min-h-[160px] flex items-center justify-center">
+                    <p id="sample-text" class="text-gray-700 italic text-center text-base sm:text-lg leading-relaxed whitespace-pre-line"></p>
                 </div>
 
                 <!-- Options -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <button onclick="handleAnswer('Human')" class="option-btn bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-semibold py-4 px-6 rounded-xl transition flex items-center justify-center space-x-2">
+                    <button onclick="handleAnswer('Human')" class="option-btn bg-white hover:bg-indigo-50 border-2 border-indigo-200 text-indigo-900 font-semibold py-4 px-6 rounded-xl transition flex items-center justify-center space-x-2 shadow-sm">
                         <span>👤</span>
                         <span>মানুষের তৈরি</span>
                     </button>
-                    <button onclick="handleAnswer('AI')" class="option-btn bg-slate-800 hover:bg-slate-700/80 border border-slate-700 text-slate-200 font-semibold py-4 px-6 rounded-xl transition flex items-center justify-center space-x-2">
+                    <button onclick="handleAnswer('AI')" class="option-btn bg-white hover:bg-purple-50 border-2 border-purple-200 text-purple-900 font-semibold py-4 px-6 rounded-xl transition flex items-center justify-center space-x-2 shadow-sm">
                         <span>🤖</span>
                         <span>AI-এর তৈরি</span>
                     </button>
@@ -72,25 +70,25 @@
         </div>
 
         <!-- Result Screen -->
-        <div id="result-screen" class="hidden bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 text-center shadow-2xl space-y-6">
+        <div id="result-screen" class="hidden bg-white rounded-2xl p-6 sm:p-8 text-center shadow-lg border border-gray-100 space-y-6">
             <div class="text-5xl" id="result-icon">🎉</div>
             <div>
-                <h2 class="text-2xl font-bold mb-2">আপনার ফলাফল</h2>
-                <p class="text-slate-400 text-sm">২০টি প্রশ্নের মধ্যে আপনার সঠিক উত্তর:</p>
+                <h2 class="text-2xl font-bold mb-2 text-gray-800">আপনার ফলাফল</h2>
+                <p class="text-gray-500 text-sm">২০টি প্রশ্নের মধ্যে আপনার সঠিক উত্তর:</p>
             </div>
 
-            <div class="bg-indigo-950/40 border border-indigo-500/30 rounded-xl p-6">
-                <span id="final-score" class="text-5xl font-extrabold text-indigo-400">0</span>
-                <span class="text-2xl text-slate-400"> / 20</span>
-                <p id="score-comment" class="mt-3 text-slate-300 font-medium"></p>
+            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-6">
+                <span id="final-score" class="text-5xl font-extrabold text-indigo-600">0</span>
+                <span class="text-2xl text-gray-500"> / 20</span>
+                <p id="score-comment" class="mt-3 text-gray-700 font-medium"></p>
             </div>
 
             <div class="space-y-3 pt-2">
-                <a id="share-facebook" target="_blank" class="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3.5 px-6 rounded-xl shadow-lg transition">
+                <a id="share-facebook" target="_blank" class="w-full inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3.5 px-6 rounded-xl shadow transition">
                     <i class="fab fa-facebook mr-2"></i>
                     ফলাফলটি ফেসবুকে শেয়ার করুন
                 </a>
-                <button onclick="location.reload()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold py-3.5 px-6 rounded-xl border border-slate-700 transition">
+                <button onclick="location.reload()" class="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3.5 px-6 rounded-xl border border-gray-300 transition">
                     আবার চেষ্টা করুন
                 </button>
             </div>
@@ -99,7 +97,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-800 py-4 text-center text-xs text-slate-500">
+    <footer class="border-t bg-white py-4 text-center text-xs text-gray-400">
         <p>এআই চিনুন &copy; ২০২৬ — All Rights Reserved</p>
     </footer>
 
@@ -180,7 +178,7 @@
 
             document.getElementById('score-comment').innerText = comment;
 
-            // Facebook Share Link Config
+            // Facebook Share Link with Image Metadata Page
             const currentDomain = window.location.origin;
             const finalShareUrl = `${currentDomain}/generate-image.html?score=${score}&total=${questions.length}`;
             const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(finalShareUrl)}`;
