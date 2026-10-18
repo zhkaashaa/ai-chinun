@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="bn" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>এআই চিনুন - AI Perception Test</title>
+    
+    <!-- Meta tags for Social Media & Open Graph -->
+    <meta property="og:title" content="এআই চিনুন - আপনি কি এআই আর মানুষের সৃষ্টি আলাদা করতে পারেন?">
+    <meta property="og:description" content="২০টি প্রশ্নের মাধ্যমে আপনার এআই সনাক্তকরণ দক্ষতা যাচাই করুন এবং আপনার স্কোর সোশ্যাল মিডিয়ায় শেয়ার করুন!">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f5ff',
+                            100: '#e5edff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'Kalpurush', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Bengali Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-button {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(99, 102, 241, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #a5b4fc 0%, #6366f1 50%, #c084fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header Navigation -->
+    <header class="w-full border-b border-slate-800/80 glass-card sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="resetQuiz()">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                    <i class="fa-solid font-bold fa-robot text-xl text-white"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl tracking-tight gradient-text">এআই চিনুন</h1>
+                    <p class="text-xs text-slate-400">AI Perception Test</p>
+                </div>
+            </div>
+            
+            <button onclick="resetQuiz()" class="text-xs md:text-sm px-3 py-1.5 rounded-lg glass-button text-slate-300 hover:text-white flex items-center gap-2">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>পুনরায় শুরু</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-4 md:p-6 my-auto">
+        <div class="w-full max-w-3xl">
+
+            <!-- 1. LANDING PAGE SCREEN -->
+            <div id="landing-screen" class="glass-card rounded-2xl p-6 md:p-10 text-center shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-24 -left-24 w-48 h-48 bg-indigo-500/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="absolute -bottom-24 -right-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 text-sm mb-6">
+                    <i class="fa-solid fa-brain"></i>
+                    <span>টিউরিং টেস্ট চ্যালেঞ্জ</span>
+                </div>
+
+                <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
+                    আপনি কি <span class="gradient-text">মানুষ</span> ও <span class="gradient-text">এআই</span>-এর তফাৎ বোঝেন?
+                </h1>
+                
+                <p class="text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+                    কৃত্রিম বুদ্ধিমত্তা আজ মানুষের মতোই কবিতা, ছবি, কোড ও গল্প তৈরি করছে। নিচে দেওয়া ২০টি বিভিন্ন পরিস্থিতির মুখোমুখি হন এবং পরীক্ষা করুন আপনি কতটা নিখুঁতভাবে এআই চিনতে পারেন!
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
+                    <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50">
+                        <i class="fa-solid fa-list-check text-indigo-400 text-2xl mb-2"></i>
+                        <h3 class="font-semibold text-slate-200">২০টি পরীক্ষা</h3>
+                        <p class="text-xs text-slate-400">লেখা, সাহিত্য, যুক্তি ও ভিজ্যুয়াল কনটেক্সট।</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50">
+                        <i class="fa-solid fa-bolt text-yellow-400 text-2xl mb-2"></i>
+                        <h3 class="font-semibold text-slate-200">ইনস্ট্যান্ট রেজাল্ট</h3>
+                        <p class="text-xs text-slate-400">প্রতিটি উত্তরের সাথে সাথে সঠিক সমাধান।</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-800/40 border border-slate-700/50">
+                        <i class="fa-solid fa-share-nodes text-emerald-400 text-2xl mb-2"></i>
+                        <h3 class="font-semibold text-slate-200">র‍্যাংক ও শেয়ার</h3>
+                        <p class="text-xs text-slate-400">আপনার স্কোর কার্ড ফেসবুকে শেয়ার করার সুযোগ।</p>
+                    </div>
+                </div>
+
+                <button onclick="startQuiz()" class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl text-lg shadow-lg shadow-indigo-500/25 transition-all transform hover:scale-[1.02] active:scale-[0.98]">
+                    পরীক্ষা শুরু করুন <i class="fa-solid fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+
+            <!-- 2. QUIZ SCREEN -->
+            <div id="quiz-screen" class="hidden glass-card rounded-2xl p-5 md:p-8 shadow-2xl relative">
+                
+                <!-- Progress Header -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-center text-sm font-semibold mb-2">
+                        <span id="question-tracker" class="text-indigo-400">প্রশ্ন ১ এর ২০</span>
+                        <span id="score-tracker" class="text-slate-400">স্কোর: 0</span>
+                    </div>
+                    <div class="w-full bg-slate-800 rounded-full h-2.5 overflow-hidden">
+                        <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2.5 rounded-full transition-all duration-300" style="width: 5%"></div>
+                    </div>
+                </div>
+
+                <!-- Scenario Category Badge -->
+                <div id="category-badge" class="inline-block px-3 py-1 rounded-md bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 mb-3">
+                    বিভাগ: সাহিত্য ও লেখা
+                </div>
+
+                <!-- Scenario/Question Box -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-xl p-5 md:p-6 mb-6">
+                    <h2 id="question-title" class="text-lg md:text-xl font-medium text-slate-100 mb-3 leading-relaxed">
+                        উপাদানটি লোড হচ্ছে...
+                    </h2>
+                    <div id="content-container" class="bg-slate-950/60 p-4 rounded-lg border border-slate-800 text-slate-300 text-sm md:text-base italic leading-relaxed whitespace-pre-line mb-2">
+                        <!-- Content snippet will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Choice Buttons -->
+                <div id="choice-buttons" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+                    <button onclick="handleAnswer('human')" class="glass-button p-4 rounded-xl text-left flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg group-hover:bg-emerald-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-100">মানুষ (Human)</p>
+                                <p class="text-xs text-slate-400">মানুষ এটি তৈরি করেছে</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600 group-hover:text-white transition-colors"></i>
+                    </button>
+
+                    <button onclick="handleAnswer('ai')" class="glass-button p-4 rounded-xl text-left flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-lg group-hover:bg-indigo-500 group-hover:text-white transition-colors">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-slate-100">এআই (Artificial Intelligence)</p>
+                                <p class="text-xs text-slate-400">কৃত্রিম বুদ্ধিমত্তা এটি তৈরি করেছে</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-slate-600 group-hover:text-white transition-colors"></i>
+                    </button>
+                </div>
+
+                <!-- Instant Feedback Area -->
+                <div id="feedback-box" class="hidden p-4 rounded-xl border mb-6 transition-all">
+                    <div id="feedback-header" class="flex items-center gap-2 font-bold text-lg mb-1">
+                        <!-- Correct/Incorrect header -->
+                    </div>
+                    <p id="explanation-text" class="text-sm text-slate-300 leading-relaxed mb-3">
+                        <!-- Explanation -->
+                    </p>
+                    <button onclick="nextQuestion()" class="w-full py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold rounded-lg text-sm transition-colors flex items-center justify-center gap-2">
+                        <span>পরবর্তী প্রশ্ন</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- 3. RESULT SCREEN -->
+            <div id="result-screen" class="hidden glass-card rounded-2xl p-6 md:p-10 text-center shadow-2xl relative">
+                
+                <div class="mb-4">
+                    <span class="px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-sm font-semibold">
+                        কুইজ সমাপ্ত!
+                    </span>
+                </div>
+
+                <!-- Rank Title -->
+                <h2 id="rank-title" class="text-3xl md:text-4xl font-extrabold mb-2 gradient-text">
+                    ডিজিটাল ডিটেকটিভ
+                </h2>
+                <p id="rank-subtitle" class="text-slate-300 text-sm md:text-base mb-6">
+                    আপনার পর্যবেক্ষণ ক্ষমতা বেশ প্রশংসনীয়!
+                </p>
+
+                <!-- Score Circle / Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                        <p class="text-xs text-slate-400 mb-1">মোট পয়েন্ট</p>
+                        <p id="final-score" class="text-2xl md:text-3xl font-extrabold text-indigo-400">১৫ / ২০</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800">
+                        <p class="text-xs text-slate-400 mb-1">সঠিকতার হার</p>
+                        <p id="accuracy-percent" class="text-2xl md:text-3xl font-extrabold text-emerald-400">৭৫%</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-800 col-span-2 md:col-span-1">
+                        <p class="text-xs text-slate-400 mb-1">এআই ডিটেকশন ক্ষমতা</p>
+                        <p id="detection-level" class="text-2xl md:text-3xl font-extrabold text-purple-400">উচ্চ</p>
+                    </div>
+                </div>
+
+                <!-- Share Section -->
+                <div class="bg-slate-900/80 p-5 rounded-xl border border-slate-800 mb-8">
+                    <h3 class="text-slate-200 font-semibold mb-3 text-sm md:text-base">
+                        <i class="fa-solid fa-share-nodes text-indigo-400 mr-2"></i>বন্ধুদের সাথে চ্যালেঞ্জ শেয়ার করুন:
+                    </h3>
+                    
+                    <div class="flex flex-wrap items-center justify-center gap-3">
+                        <!-- Facebook Share -->
+                        <button onclick="shareFacebook()" class="px-4 py-2.5 rounded-lg bg-[#1877F2] hover:bg-[#166fe5] text-white font-medium text-sm flex items-center gap-2 transition-transform active:scale-95">
+                            <i class="fa-brands fa-facebook-f text-lg"></i>
+                            <span>ফেসবুকে শেয়ার</span>
+                        </button>
+                        
+                        <!-- WhatsApp Share -->
+                        <button onclick="shareWhatsApp()" class="px-4 py-2.5 rounded-lg bg-[#25D366] hover:bg-[#20bd5a] text-white font-medium text-sm flex items-center gap-2 transition-transform active:scale-95">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>হোয়াটসঅ্যাপ</span>
+                        </button>
+
+                        <!-- Twitter/X Share -->
+                        <button onclick="shareTwitter()" class="px-4 py-2.5 rounded-lg bg-black hover:bg-slate-900 text-white font-medium text-sm border border-slate-700 flex items-center gap-2 transition-transform active:scale-95">
+                            <i class="fa-brands fa-x-twitter text-lg"></i>
+                            <span>টুইটার (X)</span>
+                        </button>
+
+                        <!-- Copy Link -->
+                        <button onclick="copyShareLink()" class="px-4 py-2.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium text-sm border border-slate-700 flex items-center gap-2 transition-transform active:scale-95">
+                            <i class="fa-solid fa-link text-lg"></i>
+                            <span id="copy-btn-text">লিঙ্ক কপি</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Re-try Button -->
+                <button onclick="resetQuiz()" class="px-8 py-3.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl text-base shadow-lg shadow-indigo-500/25 transition-all">
+                    <i class="fa-solid fa-rotate-right mr-2"></i> আবার চেষ্টা করুন
+                </button>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-800/60 py-4 text-center text-xs text-slate-500">
+        <p>© 2026 এআই চিনুন (AI Perception Test) | Vercel Deployment Ready</p>
+    </footer>
+
+    <!-- JavaScript Quiz Logic -->
+    <script>
+        // 20 High-quality Bangladeshi Context & General AI/Human Scenarios
+        const questionsData = [
+            {
+                category: "কবিতা ও সাহিত্য",
+                title: "নিচের ছড়াটি কে লিখেছে বলে মনে হয়?",
+                content: "‘মেঘের দেশে রোদের খেলা, বৃষ্টির সুবাস বাতায়ন জুড়ে,\nডিজিটাল আলোয় ডানা মেলে মন, রূপালী স্মৃতির নক্ষত্রপুরে।’",
+                correctAnswer: "ai",
+                explanation: "এটি এআই (GPT-4) দ্বারা লেখা। 'ডিজিটাল আলো' এবং 'নক্ষত্রপুর'-এর মতো শব্দজোড়া ব্যাকরণগতভাবে সঠিক হলেও এটি একটি কৃত্রিম ছন্দের ইমপ্রোভাইজেশন।"
+            },
+            {
+                category: "সামাজিক মাধ্যম স্ট্যাটাস",
+                title: "এই মতামত বা স্ট্যাটাসটি কার লেখা?",
+                content: "‘আজ ট্রাফিকে ২ ঘণ্টা আটকে থেকে বুঝলাম, ঢাকার রিকশাচালকদের মতো ধৈর্য আর জীবনবোধ আর কারো নেই। জ্যামে বসে তাদের চা খাওয়ার দৃশ্যটাই একটা বিশাল দর্শন।’",
+                correctAnswer: "human",
+                explanation: "এটি একজন মানুষের স্বাভাবিক ও রিয়েল-লাইফ অভিজ্ঞতার লেখা। এআই সাধারণত এই ধরণের সুনির্দিষ্ট বাস্তবিক অনুভূতি ও স্থানীয় অনুষঙ্গ দিয়ে নিজের মতো গল্প ফাঁদে না।"
+            },
+            {
+                category: "সংবাদ কলাম",
+                title: "জলবায়ু সংক্রান্ত এই সংক্ষিপ্ত প্যারাগ্রাফটি পরীক্ষা করুন:",
+                content: "‘জলবায়ু পরিবর্তনের ফলে বৈশ্বিক তাপমাত্রা বৃদ্ধি পাচ্ছে। সমুদ্রপৃষ্ঠের উচ্চতা বৃদ্ধির কারণে উপকূলীয় অঞ্চল প্লাবিত হওয়ার ঝুঁকি বাড়ছে। টেকসই শক্তির ব্যবহার বৃদ্ধি এই সংকট মোকাবিলায় সাহায্য করতে পারে।’",
+                correctAnswer: "ai",
+                explanation: "এটি অত্যন্ত স্ট্রাকচার্ড ও জেনেরিক উত্তর, যা সাধারণত ChatGPT বা অন্যান্য AI তথ্য সংক্ষেপ করার ক্ষেত্রে সরাসরি তৈরি করে।"
+            },
+            {
+                category: "প্রোগ্রামিং ও কোডিং",
+                title: "কোডের সাথে দেওয়া এই কমেন্টটি কার করা?",
+                content: "// এই লুপটা কাজ করছে না কেন জানি না, কিন্তু ৩ ঘণ্টা মাথা নষ্ট করার পর ২ নম্বর লাইনটা সরাতেই সব ঠিক হয়ে গেল! ডোন্ট টাচ দিস!",
+                correctAnswer: "human",
+                explanation: "মানুষের কোডিং প্রক্রিয়ার আবেগ, ফ্রাস্ট্রেশন এবং মজার আত্মপলব্ধি এখানে স্পষ্ট। এআই সাধারণত অত্যন্ত ফরমাল ও টেকনিক্যাল কমেন্ট লেখে।"
+            },
+            {
+                category: "চিত্রশিল্প বিবরণ",
+                title: "একটি ছবির এই বিবরণটি কার?",
+                content: "‘একটি সাইবারপাঙ্ক শহরের ক্যানভাস, যেখানে বৃষ্টির পর ভেজা রাস্তায় নিয়ন আলোর প্রতিফলন দেখা যাচ্ছে। শহরের ব্যাকগ্রাউন্ডে উন্ত ফ্লাইওভার এবং এশিয়ান ডিনার শপের ঝাপসা আলো। style: Ultra-realistic, 8k resolution, cinematic standard.’",
+                correctAnswer: "ai",
+                explanation: "এটি Midjourney/DALL-E-এর একটি ছবি তৈরির প্রম্পট (Prompt)। শেষের টেকনিক্যাল ট্যাগগুলো এআই ইমেজের স্পষ্ট নির্দেশক।"
+            },
+            {
+                category: "গ্রাহক সেবা (Customer Support)",
+                title: "ফেসবুক পেজে ইনবক্সের এই রিপ্লাইটি কার?",
+                content: "‘প্রিয় গ্রাহক, আপনার মূল্যবান মতামতের জন্য ধন্যবাদ। আমরা আপনার সমস্যাটি গুরুত্বের সাথে বিবেচনা করছি। অনুগ্রহ করে আপনার অর্ডার নম্বরটি প্রদান করুন যাতে আমরা দ্রুত সমাধান করতে পারি।’",
+                correctAnswer: "ai",
+                explanation: "এটি একটি অটোমেটেড এআই চ্যাটবটের সেট করা টেমপ্লেট উত্তর।"
+            },
+            {
+                category: "রেস্তোরাঁর রিভিউ",
+                title: "খাবারের এই রিভিউটি পড়ুন:",
+                content: "‘বিরিয়ানি তো দিল, কিন্তু না ছিল কাচ্চির সেই চর্বির ফ্লেভার, না ছিল আলুর সঠিক সেদ্ধ! ১০০ টাকার জিনিস ২৫০ টাকায় বেচে আর লজ্জা করে না!’",
+                correctAnswer: "human",
+                explanation: "এটি একবারে খাঁটি মানুষের রাগ এবং রিয়েল-লাইফ অভিজ্ঞতা প্রকাশ করে।"
+            },
+            {
+                category: "দার্শনিক উক্তি",
+                title: "এই উক্তিটি কার?",
+                content: "‘প্রযুক্তি যখন মানুষের চিন্তা করার ক্ষমতা কেড়ে নেয়, তখন মানুষ নিজের বানানো যন্ত্রের দাস হয়ে পড়ে।’",
+                correctAnswer: "human",
+                explanation: "এটি একজন সাধারণ মানুষের লেখা দার্শনিক ব্লগ থেকে নেওয়া।"
+            },
+            {
+                category: "ইমেইল লেখনী",
+                title: "ছুটির আবেদনের এই ইমেইলটি পরীক্ষা করুন:",
+                content: "‘মহোদয়, বিনীত নিবেদন এই যে, আমি তীব্র জ্বর ও শারীরিক অসুস্থতার কারণে আজ অফিসে উপস্থিত হতে অপারগ। অনুগ্রহ করে আমাকে একদিনের ছুটি প্রদান করে বাধ্য করবেন।’",
+                correctAnswer: "ai",
+                explanation: "এটি একটি কৃত্রিমভাবে তৈরিকৃত স্ট্যান্ডার্ড প্রাতিষ্ঠানিক ইমেইল ফরম্যাট যা এআই সহজেই তৈরি করে।"
+            },
+            {
+                category: "উপন্যাস ও গল্প",
+                title: "গল্পের এই অংশটি কে লিখেছে?",
+                content: "‘হুমায়ূন আহমেদের মিসির আলি ঘরের এক কোণে বসে বিষণ্ণ মনে চা খাচ্ছিলেন। তার চশমার কাঁচটি কেমন জানি ধোঁয়াটে দেখাচ্ছিল।’",
+                correctAnswer: "ai",
+                explanation: "এআই বিভিন্ন বিখ্যাত চরিত্রের নাম নিয়ে নতুন নতুন লাইন কল্পনা করে গল্প গঠন করতে পারে।"
+            },
+            {
+                category: "বিজ্ঞান ও প্রযুক্তি",
+                title: "এই ব্যাখ্যাটি কার লেখা?",
+                content: "‘কোয়ান্টাম কম্পিউটিং প্রথাগত বিটের বদলে কিউবিট (Qubit) ব্যবহার করে। ফলে এটি একই সাথে একাধিক হিসাব সম্পাদন করতে পারে, যা সুপারকম্পিউটারের চেয়েও দ্রুত।’",
+                correctAnswer: "ai",
+                explanation: "সঠিক, প্রাতিষ্ঠানিক ও কাঠামোগত তথ্য উপস্থাপন এআই-এর অন্যতম বড় বৈশিষ্ট্য।"
+            },
+            {
+                category: "মজার ট্রিক ও কৌতুক",
+                title: "এই কৌতুকটি কে তৈরি করেছে?",
+                content: "‘কেন কম্পিউটার কখনো চা খায় না? কারণ সে মাউস ব্যবহার করতে ব্যস্ত থাকে!’",
+                correctAnswer: "ai",
+                explanation: "এআই প্রায়ই অত্যন্ত সোজা ও সেন্স-লেস হাস্যরস তৈরির চেষ্টা করে যা খুব একটা মজার হয় না।"
+            },
+            {
+                category: "ব্যক্তিগত জীবনের অভিজ্ঞতা",
+                title: "এই অনুভূতিটি কার?",
+                content: "‘ছোটবেলায় যখন কারেন্ট চলে যেত, আমরা ছাদে গিয়ে তারা গুনতাম। এখন কারেন্ট গেলেই হাত অটোমেটিক ফোনের ডাটা অন করতে চলে যায়।’",
+                correctAnswer: "human",
+                explanation: "অতীতের স্মৃতিকাতরতা ও আধুনিক জীবনের বৈপরীত্যের এই গভীর অভিজ্ঞতা মানুষেরই।"
+            },
+            {
+                category: "মুভি রিভিউ",
+                title: "সিনেমার এই রিভিউটি পড়ুন:",
+                content: "‘ছবিটার ব্যাকগ্রাউন্ড মিউজিক অসাধারণ। তবে চিত্রনাট্য শেষভাগে এসে কিছুটা শিথিল হয়ে পড়ে। ভিজ্যুয়াল ইফেক্ট এবং অভিনয়শিল্পীদের পারফর্মেন্স সন্তোষজনক।’",
+                correctAnswer: "ai",
+                explanation: "এটি একটি নির্দিষ্ট টেমপ্লেটে লেখা এআই জেনারেটেড ব্যালেন্সড মুভি রিভিউ।"
+            },
+            {
+                category: "রেসিপি বা রন্ধনপ্রণালী",
+                title: "রান্নার এই ধাপটি পড়ুন:",
+                content: "‘প্রথমে একটি পাত্রে পেঁয়াজ কুচি বাদামী রঙ না হওয়া পর্যন্ত ভাজুন। এরপর তাতে ১ চা চামচ আদা বাটা ও সয়া সস যোগ করে মাঝারি আঁচে কষাতে থাকুন।’",
+                correctAnswer: "ai",
+                explanation: "রেসিপি বা ধাপভিত্তিক গাইডলাইনগুলো এআই নিখুঁতভাবে তৈরি করে।"
+            },
+            {
+                category: "শিক্ষা ও ক্যারিয়ার পরামর্শ",
+                title: "এই পরামর্শটি পরীক্ষা করুন:",
+                content: "‘সফল ক্যারিয়ার গড়তে সময় ব্যবস্থাপনা, সফট স্কিল অর্জন এবং নিয়মিত নতুন বিষয় শেখার অভ্যাস বজায় রাখা অত্যন্ত গুরুত্বপূর্ণ।’",
+                correctAnswer: "ai",
+                explanation: "ক্লিশে বা অতি-পরিচিত উপদেশমূলক বাক্যগুলো সাধারণত এআই দ্রুত জেনারেট করে।"
+            },
+            {
+                category: "খেলাধুলার পোস্ট",
+                title: "খেলার এই কমেন্ট্রিটি কার?",
+                content: "‘শেষ ওভারে দরকার ছিল ১২ রান, আর প্রথম দুই বলেই ছক্কা! মাঠের দর্শক এখন উন্মাদ হয়ে চিৎকার করছে। বিশ্বাসই হচ্ছে না কি দেখলাম!’",
+                correctAnswer: "human",
+                explanation: "লাইভ উত্তেজনামূলক অনুভূতি কেবল মানুষের বাস্তব অভিজ্ঞতার মাধ্যমেই এত প্রাণবন্ত হয়।"
+            },
+            {
+                category: "বিতর্ক ও যুক্তি",
+                title: "সামাজিক বিষয় সংক্রান্ত এই মতটি কার?",
+                content: "‘অনলাইন শিক্ষা যেমন দূরবর্তী শিক্ষার্থীদের জন্য সুযোগ তৈরি করেছে, তেমনি শিক্ষার্থীদের মনোযোগের ব্যাঘাত ঘটানোর সম্ভাবনাও বৃদ্ধি করেছে।’",
+                correctAnswer: "ai",
+                explanation: "দ্বিমুখী যুক্তি (Pros and Cons) ব্যালেন্স করে লেখা এআই-এর স্বাভাবিক টেক্সট প্যাটার্ন।"
+            },
+            {
+                category: "ব্যক্তিগত বার্তা (Text Message)",
+                title: "চ্যাটের এই মেসেজটি কার?",
+                content: "‘দোস্ত আমি আসতেছি ৫ মিনিটে, জ্যামে আটকে আছি একটু দাঁড়াও।’ (বাস্তবে সে তখনও বাসা থেকেই বের হয়নি!)",
+                correctAnswer: "human",
+                explanation: "বাঙালি সংস্কৃতি ও দৈনন্দিন জীবনের ছোটখাটো এই বাস্তব মিথ্যালোচুনটি মানুষেরই নিদর্শন!"
+            },
+            {
+                category: "ভবিষ্যৎ ও প্রযুক্তি",
+                title: "ভবিষ্যতের এই ধারণাটি কার?",
+                content: "‘আগামী দশকে কৃত্রিম বুদ্ধিমত্তা চিকিৎসা ক্ষেত্রে বড় পরিবর্তন আনবে। রোগ নির্ণয়ের গতি ও নির্ভুলতা বহুগুণ বৃদ্ধি পাবে।’",
+                correctAnswer: "ai",
+                explanation: "ভবিষ্যদ্বাণীমূলক সাধারণ টেক্সট ও টেকনোলজি প্রজেকশন এআই জেনারেট করে থাকে।"
+            }
+        ];
+
+        // State variables
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        // DOM Element references
+        const landingScreen = document.getElementById('landing-screen');
+        const quizScreen = document.getElementById('quiz-screen');
+        const resultScreen = document.getElementById('result-screen');
+        
+        const questionTracker = document.getElementById('question-tracker');
+        const scoreTracker = document.getElementById('score-tracker');
+        const progressBar = document.getElementById('progress-bar');
+        const categoryBadge = document.getElementById('category-badge');
+        const questionTitle = document.getElementById('question-title');
+        const contentContainer = document.getElementById('content-container');
+        
+        const choiceButtons = document.getElementById('choice-buttons');
+        const feedbackBox = document.getElementById('feedback-box');
+        const feedbackHeader = document.getElementById('feedback-header');
+        const explanationText = document.getElementById('explanation-text');
+
+        // Start Quiz
+        function startQuiz() {
+            landingScreen.classList.add('hidden');
+            resultScreen.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            
+            loadQuestion();
+        }
+
+        // Load Single Question
+        function loadQuestion() {
+            const currentQ = questionsData[currentQuestionIndex];
+            
+            // Hide feedback
+            feedbackBox.classList.add('hidden');
+            choiceButtons.classList.remove('hidden');
+
+            // Set content
+            questionTracker.innerText = `প্রশ্ন ${currentQuestionIndex + 1} এর ${questionsData.length}`;
+            scoreTracker.innerText = `স্কোর: ${score}`;
+            
+            const progressPercent = ((currentQuestionIndex + 1) / questionsData.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+
+            categoryBadge.innerText = `বিভাগ: ${currentQ.category}`;
+            questionTitle.innerText = currentQ.title;
+            contentContainer.innerText = currentQ.content;
+        }
+
+        // Handle User Answer Selection
+        function handleAnswer(selectedChoice) {
+            const currentQ = questionsData[currentQuestionIndex];
+            const isCorrect = selectedChoice === currentQ.correctAnswer;
+
+            if (isCorrect) {
+                score++;
+                feedbackHeader.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400"></i> <span class="text-emerald-400">সঠিক উত্তর!</span>`;
+                feedbackBox.className = "p-4 rounded-xl border mb-6 bg-emerald-950/40 border-emerald-500/30";
+            } else {
+                feedbackHeader.innerHTML = `<i class="fa-solid fa-circle-xmark text-rose-400"></i> <span class="text-rose-400">ভুল উত্তর!</span>`;
+                feedbackBox.className = "p-4 rounded-xl border mb-6 bg-rose-950/40 border-rose-500/30";
+            }
+
+            const actualCreator = currentQ.correctAnswer === 'human' ? 'মানুষ (Human)' : 'এআই (AI)';
+            explanationText.innerHTML = `<strong>সঠিক সৃষ্টিকর্তা: ${actualCreator}</strong><br>${currentQ.explanation}`;
+
+            // Show feedback and hide decision buttons
+            choiceButtons.classList.add('hidden');
+            feedbackBox.classList.remove('hidden');
+
+            userAnswers.push({
+                questionIndex: currentQuestionIndex,
+                selected: selectedChoice,
+                isCorrect: isCorrect
+            });
+        }
+
+        // Next Question or Finish
+        function nextQuestion() {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questionsData.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        // Show Final Results
+        function showResults() {
+            quizScreen.classList.add('hidden');
+            resultScreen.classList.remove('hidden');
+
+            const total = questionsData.length;
+            const percentage = Math.round((score / total) * 100);
+
+            document.getElementById('final-score').innerText = `${score} / ${total}`;
+            document.getElementById('accuracy-percent').innerText = `${percentage}%`;
+
+            // Rank logic based on score
+            let rank = "";
+            let sub = "";
+            let level = "";
+
+            if (score >= 18) {
+                rank = "এআই চেনার মাস্টার (Cyber Sentinel)";
+                sub = "অসাধারণ! এআই এবং মানুষের সূক্ষ্ম পার্থক্য আপনি সহজেই ধরে ফেলতে পারেন।";
+                level = "সর্বোচ্চ";
+            } else if (score >= 14) {
+                rank = "ডিজিটাল ডিটেকটিভ (Digital Detective)";
+                sub = "বেশ ভালো! আপনার পর্যবেক্ষণ ক্ষমতা ও যুক্তি অত্যন্ত প্রশংসনীয়।";
+                level = "উচ্চ";
+            } else if (score >= 10) {
+                rank = "সাইবর্গ পর্যবেক্ষণকারী (Cyborg Observer)";
+                sub = "ভালো চেষ্টা! মাঝেমধ্যে এআই আপনাকে বিভ্রান্ত করতে সক্ষম হচ্ছে।";
+                level = "মাঝারি";
+            } else {
+                rank = "এআই যুগের শিক্ষানবিস (AI Novice)";
+                sub = "চিন্তার কিছু নেই! এআই দ্রুত উন্নত হচ্ছে, তাই এদের চেনা দিন দিন কঠিন হচ্ছে।";
+                level = "সাধারণ";
+            }
+
+            document.getElementById('rank-title').innerText = rank;
+            document.getElementById('rank-subtitle').innerText = sub;
+            document.getElementById('detection-level').innerText = level;
+        }
+
+        // Reset Quiz
+        function resetQuiz() {
+            resultScreen.classList.add('hidden');
+            quizScreen.classList.add('hidden');
+            landingScreen.classList.remove('hidden');
+        }
+
+        // Social Media Sharing Functions
+        function getShareText() {
+            return `আমি "এআই চিনুন" কুইজে ২০ এর মধ্যে ${score} পেয়ে '${document.getElementById('rank-title').innerText}' খেতাব জিতেছি! আপনি কি মানুষ ও এআই-এর সৃষ্টি আলাদা করতে পারবেন? কুইজটি খেলে দেখুন:`;
+        }
+
+        function shareFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+
+        function shareWhatsApp() {
+            const text = encodeURIComponent(`${getShareText()} ${window.location.href}`);
+            window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        }
+
+        function shareTwitter() {
+            const text = encodeURIComponent(getShareText());
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+
+        function copyShareLink() {
+            const textToCopy = `${getShareText()} ${window.location.href}`;
+            
+            // Clipboard fallback mechanism
+            const tempInput = document.createElement("textarea");
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            const copyBtnText = document.getElementById('copy-btn-text');
+            copyBtnText.innerText = "কপি হয়েছে!";
+            setTimeout(() => {
+                copyBtnText.innerText = "লিঙ্ক কপি";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
