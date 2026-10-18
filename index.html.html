@@ -52,9 +52,9 @@
                     প্রশ্ন এখানে আসবে...
                 </h3>
 
-                <!-- Sample Display Area (Image / Text) -->
+                <!-- Sample Display Area -->
                 <div id="media-container" class="bg-slate-950 border border-slate-800 rounded-xl p-4 min-h-[160px] flex items-center justify-center">
-                    <p id="sample-text" class="text-slate-300 italic text-center text-base sm:text-lg leading-relaxed"></p>
+                    <p id="sample-text" class="text-slate-300 italic text-center text-base sm:text-lg leading-relaxed whitespace-pre-line"></p>
                 </div>
 
                 <!-- Options -->
@@ -106,7 +106,7 @@
     <script>
         const questions = [
             { id: 1, text: "নিচের ছড়াটি কার লেখা মনে হয়?", sample: "আকাশেতে মেঘ জমেছে, বৃষ্টি পড়ে টাপুর টুপুর,\nখুকুর চোখে ঘুম এসেছে, নিঝুম হল দুপুর।", answer: "Human" },
-            { id: 2, text: "নিচের প্রোগ্রামিং কোডটি কে লিখেছে?", sample: "function calculateSum(a, b) {\n  // Returns the addition of two numbers\n  return a + b;\n}", answer: "AI" },
+            { id: 2, text: "নিচের প্রোগ্রামিং কোডটি কে লিখেছে?", sample: "function calculateSum(a, b) {\n  return a + b;\n}", answer: "AI" },
             { id: 3, text: "নিচের সংবাদ শিরোনামটি কার তৈরি?", sample: "ঢাকায় হঠাৎ আবহাওয়ার পরিবর্তন: বিকেলে কালবৈশাখী ঝড়ের আশঙ্কা", answer: "Human" },
             { id: 4, text: "নিচের ছোট গল্পটি কার?", sample: "একটি ছায়া ভেসে উঠল ঘরের কোণে। আলো নেভাতেই তা মিলিয়ে গেল শূন্যতায়।", answer: "AI" },
             { id: 5, text: "নিচের গণিত সমস্যার সমাধানটি কে করেছে?", sample: "2x + 5 = 15\n=> 2x = 10\n=> x = 5", answer: "Human" },
@@ -120,7 +120,7 @@
             { id: 13, text: "নিচের বায়োডাটা সারাংশটি কার তৈরি?", sample: "অভিজ্ঞ ফুল-স্ট্যাক ডেভেলপার, যে আধুনিক ওয়েব টেকনোলজি ও স্কেলেবল সিস্টেম তৈরিতে পারদর্শী।", answer: "AI" },
             { id: 14, text: "নিচের জোকসটি কার তৈরি?", sample: "কম্পিউটার কেন ল্যাপটপে রূপ নিল? কারণ সে হাঁটতে চেয়েছিল!", answer: "AI" },
             { id: 15, text: "নিচের মেইল সাবজেক্টটি কার?", sample: "জরুরি: আগামীকালের মিটিংয়ের সময় পরিবর্তন সংক্রান্ত বিজ্ঞপ্তি", answer: "Human" },
-            { id: 16, text: "নিচের গানটি কার লেখা?", sample: "দূর পরবাসে মন পড়ে থাকে,\nমা তোমার কথা যে মনে পড়ে।" }, answer: "Human" },
+            { id: 16, text: "নিচের গানটি কার লেখা?", sample: "দূর পরবাসে মন পড়ে থাকে,\nমা তোমার কথা যে মনে পড়ে।", answer: "Human" },
             { id: 17, text: "নিচের প্রোডাক্ট রিভিউটি কার?", sample: "প্রোডাক্টটি সত্যিই দুর্দান্ত! ডেলিভারি খুব দ্রুত পেয়েছি এবং প্যাকিং ভালো ছিল।", answer: "Human" },
             { id: 18, text: "নিচের বিজ্ঞাপনের বার্তাটি কার?", sample: "আপনার ব্যবসাকে রূপান্তর করুন নতুন যুগের কৃত্রিম বুদ্ধিমত্তার শক্তিতে। আজই যোগ দিন!", answer: "AI" },
             { id: 19, text: "নিচের উক্তিটি কার?", sample: "সময় বহিয়া যায়, নদীস্রোতের প্রায়।", answer: "Human" },
